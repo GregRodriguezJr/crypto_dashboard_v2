@@ -1,4 +1,5 @@
-const baseUrl = 'https://api.coingecko.com/api/v3/ping';
+const baseUrl = 'https://api.coingecko.com/api/v3/';
+const trendingUrl = 'search/trending'
 
 const getCoinGecko = async () => {
     try {
@@ -7,6 +8,6 @@ const getCoinGecko = async () => {
         console.log(data);
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 getCoinGecko();
