@@ -10,4 +10,4 @@ const getCoinGecko = async () => {
         console.log(error);
     };
 };
-getCoinGecko();
+// getCoinGecko();
