@@ -6,7 +6,7 @@ const getCoinGecko = async (endPoint) => {
     try {
         const res = await fetch(baseUrl + endPoint);
         const data = await res.json();
-        console.log(data);
+        return data.coins;
     } catch (error) {
         console.log(error);
     };
@@ -14,27 +14,22 @@ const getCoinGecko = async (endPoint) => {
 
 // getCoinGecko(coinList);
 
-// Render trending coins to a card
-const renderCard = (coins) => {
-    coins.forEach((coin, index) => {
-        $('#trending-ul').append(`
-            <li class="list-group-item">
-                ${index + 1}. ${coin.item.name}
-            </li>
-        `)
-    });
-};
-
-// API call to get top 7 trending coins
+// API call to get top 7 trending coins and render card
 const getTrending = async (endPoint) => {
     try {
-        const res = await fetch(baseUrl + endPoint);
-        const data = await res.json();
-        renderCard(data.coins);
+        const coins = await getCoinGecko(endPoint);
+        console.log(coins);
+        coins.forEach((coin, index) => {
+            $('#trending-ul').append(`
+                <li class="list-group-item">
+                    ${index + 1}. ${coin.item.name}
+                </li>
+            `);
+        });
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 
 getTrending(trendingEndPoint);
 
@@ -66,5 +61,5 @@ const renderCoins = async (coins) => {
     });
 };
 
-getCoins();
+// getCoins();
 
