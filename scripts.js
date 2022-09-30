@@ -60,7 +60,7 @@ const renderCoins = async (coins) => {
             <td>${coin.current_price}</td>
             <td>${coin.price_change_percentage_24h}</td>
             <td>${coin.market_cap}</td>
-            <td class="text-center"><a href="#" class="btn btn-outline-primary btn-sm">Details</a></td>
+            <td class"details">Details</td>
         </tr>
         `)
     });
