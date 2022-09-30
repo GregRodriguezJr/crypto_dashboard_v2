@@ -36,7 +36,7 @@ const getTrending = async (endPoint) => {
     }
 }
 
-// getTrending(trendingEndPoint);
+getTrending(trendingEndPoint);
 
 // API call to get top 100 crypto currencies
 const getCoins = async () => {
@@ -44,19 +44,27 @@ const getCoins = async () => {
     try {
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data);
+        renderCoins(data);
     } catch (error) {
         console.log(error);
     };
 };
 
-// getCoins();
+const renderCoins = async (coins) => {
+    console.log(coins);
+    coins.forEach((coin, index) => {
+        $('#coinTable').append(`
+        <tr>
+            <th scope="row">${index + 1}</th>
+            <td>${coin.name}</td>
+            <td>${coin.current_price}</td>
+            <td>${coin.price_change_percentage_24h}</td>
+            <td>${coin.market_cap}</td>
+            <td class="text-center"><a href="#" class="btn btn-outline-primary btn-sm">Details</a></td>
+        </tr>
+        `)
+    });
+};
 
-{/* <tr>
-    <th scope="row">1</th>
-    <td>Bitcoin</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-    <td>@mdo</td>
-    <td class="text-center"><a href="#" class="btn btn-outline-primary btn-sm">Details</a></td>
-</tr> */}
+getCoins();
+
