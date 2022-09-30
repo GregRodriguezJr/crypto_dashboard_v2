@@ -34,5 +34,5 @@ const getTrending = async (endPoint) => {
     }
 }
 
-getTrending(trendingEndPoint);
+// getTrending(trendingEndPoint);
 console.log("test");
