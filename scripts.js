@@ -1,24 +1,24 @@
+// URL Variables
 const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
+const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 
 // API call to Coin Gecko
 const getCoinGecko = async (endPoint) => {
     try {
         const res = await fetch(baseUrl + endPoint);
         const data = await res.json();
-        return data.coins;
+        return data;
     } catch (error) {
         console.log(error);
     };
 };
 
-// getCoinGecko(coinList);
-
 // API call to get top 7 trending coins and render card
 const getTrending = async (endPoint) => {
     try {
-        const coins = await getCoinGecko(endPoint);
-        console.log(coins);
+        const data = await getCoinGecko(endPoint);
+        const coins = data.coins;
         coins.forEach((coin, index) => {
             $('#trending-ul').append(`
                 <li class="list-group-item">
@@ -33,33 +33,27 @@ const getTrending = async (endPoint) => {
 
 getTrending(trendingEndPoint);
 
-// API call to get top 100 crypto currencies
-const getCoins = async () => {
-    const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
+// API call to get top 100 crypto currencies and render table
+const getCoins = async (endPoint) => {
     try {
-        const res = await fetch(url);
-        const data = await res.json();
-        renderCoins(data);
+        const coins = await getCoinGecko(endPoint);
+        console.log(coins);
+        coins.forEach((coin, index) => {
+            $('#coinTable').append(`
+            <tr>
+                <th scope="row">${index + 1}</th>
+                <td>${coin.name}</td>
+                <td>${coin.current_price}</td>
+                <td>${coin.price_change_percentage_24h}</td>
+                <td>${coin.market_cap}</td>
+                <td class"details">Details</td>
+            </tr>
+            `)
+        });
     } catch (error) {
         console.log(error);
     };
 };
 
-const renderCoins = async (coins) => {
-    console.log(coins);
-    coins.forEach((coin, index) => {
-        $('#coinTable').append(`
-        <tr>
-            <th scope="row">${index + 1}</th>
-            <td>${coin.name}</td>
-            <td>${coin.current_price}</td>
-            <td>${coin.price_change_percentage_24h}</td>
-            <td>${coin.market_cap}</td>
-            <td class"details">Details</td>
-        </tr>
-        `)
-    });
-};
-
-// getCoins();
+getCoins(coinsEndPoint);
 
