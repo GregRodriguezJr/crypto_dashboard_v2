@@ -19,10 +19,11 @@ const getTrending = async (endPoint) => {
     try {
         const data = await getCoinGecko(endPoint);
         const coins = data.coins;
+        console.log(coins);
         coins.forEach((coin, index) => {
             $('#trending-ul').append(`
                 <li class="list-group-item">
-                    ${index + 1}. ${coin.item.name}
+                    ${index + 1}.  <img src="${coin.item.thumb}"> ${coin.item.name}
                 </li>
             `);
         });
@@ -55,5 +56,5 @@ const getCoins = async (endPoint) => {
     };
 };
 
-getCoins(coinsEndPoint);
+// getCoins(coinsEndPoint);
 
