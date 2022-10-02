@@ -1,0 +1,8 @@
+.coin-img {
+    width: 100%;
+    max-width: 20px;
+}
+
+.coin-name {
+    font-weight: bold;
+}

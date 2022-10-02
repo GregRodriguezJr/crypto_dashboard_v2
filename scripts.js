@@ -19,7 +19,6 @@ const getTrending = async (endPoint) => {
     try {
         const data = await getCoinGecko(endPoint);
         const coins = data.coins;
-        console.log(coins);
         coins.forEach((coin, index) => {
             $('#trending-ul').append(`
                 <li class="list-group-item">
@@ -43,7 +42,11 @@ const getCoins = async (endPoint) => {
             $('#coinTable').append(`
             <tr>
                 <th scope="row">${index + 1}</th>
-                <td>${coin.name}</td>
+                <td class="d-flex align-items-center">
+                    <img class="coin-img" src="${coin.image}">
+                    <p class="coin-name my-0 mx-3">${coin.name}</p>
+
+                </td>
                 <td>${coin.current_price}</td>
                 <td>${coin.price_change_percentage_24h}</td>
                 <td>${coin.market_cap}</td>
@@ -56,5 +59,5 @@ const getCoins = async (endPoint) => {
     };
 };
 
-// getCoins(coinsEndPoint);
+getCoins(coinsEndPoint);
 
