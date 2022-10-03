@@ -2,6 +2,7 @@
 const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
+const globalEndPoint = "global"
 
 // API call to Coin Gecko
 const getCoinGecko = async (endPoint) => {
@@ -13,6 +14,18 @@ const getCoinGecko = async (endPoint) => {
         console.log(error);
     };
 };
+
+// API call to get global data and render in header
+const getGlobalData = async (endpoint) => {
+    try {
+        const data = await getCoinGecko(endpoint);
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+getGlobalData(globalEndPoint);
 
 // API call to get top 7 trending coins and render card
 const getTrending = async (endPoint) => {
