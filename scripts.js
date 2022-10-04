@@ -19,7 +19,27 @@ const getCoinGecko = async (endPoint) => {
 const getGlobalData = async (endpoint) => {
     try {
         const data = await getCoinGecko(endpoint);
-        console.log(data);
+        // Destructuring gobal data object
+        const {
+            data:{active_cryptocurrencies: totalCoins},
+            data:{markets: exchanges},
+            data:{total_market_cap:{usd: marketCap}},
+            data:{market_cap_percentage:{btc: btcDominance}}
+        } = data;
+        $('#globalData').append(`
+            <p class="mx-3">Total Coins: 
+                <span class="text-primary">${totalCoins.toLocaleString()}</span>
+            </p>
+            <p class="mx-3">Total Exchanges:
+                <span class="text-primary">${exchanges}</span>
+            </p>
+            <p class="mx-3">Market Cap:
+                <span class="text-primary">$${Math.round(marketCap).toLocaleString()}</span>
+            </p>
+            <p class="mx-3">BTC Dominance:
+                <span class="text-primary">${Math.round(btcDominance)}%</span>
+            </p>
+        `)
     } catch (error) {
         console.log(error);
     }
