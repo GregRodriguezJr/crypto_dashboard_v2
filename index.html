@@ -20,6 +20,7 @@
 
 	<!-- Main Container -->
 	<div class="container mt-5">
+		<!-- <coingecko-coin-compare-chart-widget  coin-ids="bitcoin" currency="usd" locale="en"></coingecko-coin-compare-chart-widget> -->
 		<div class="row">
 			<div class="col-md-9">
 				<table class="table table-hover">
@@ -36,15 +37,15 @@
 					<tbody id="coinTable"></tbody>
 				</table>
 			</div>
-			<div class="col-md-3 text-center">
-			<div class="card d-inline-flex" style="max-width: 16rem;">
-				<img class="card-img-top" src="./imgs/candles.jpg" alt="Card image cap">
-				<div class="card-body">
-				<h5 class="card-title">Trending Coins</h5>
-				<p class="card-text">Top 7 searched coins in the last 24hrs</p>
+			<div class="col-md-3">
+				<div class="card d-inline-flex" style="max-width: 16rem;">
+					<img class="card-img-top" src="./imgs/candles.jpg" alt="Card image cap">
+					<div class="card-body">
+					<h5 class="card-title">Trending Coins</h5>
+					<p class="card-text">Top 7 searched coins in the last 24hrs</p>
+					</div>
+					<ul class="list-group list-group-flush" id="trending-ul"></ul>
 				</div>
-				<ul class="list-group list-group-flush" id="trending-ul"></ul>
-			</div>
 			</div>
 		</div>
 	</div>
@@ -53,6 +54,8 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <!-- Bootstrap JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+	<!-- Coin Gecko Widget -->
+	<!-- <script src="https://widgets.coingecko.com/coingecko-coin-compare-chart-widget.js"></script> -->
     <!-- Custom JS -->
     <script src="scripts.js"></script>
 </body>

@@ -46,7 +46,7 @@ const getTrending = async (endPoint) => {
         const coins = data.coins;
         coins.forEach((coin, index) => {
             $('#trending-ul').append(`
-                <li class="list-group-item">
+                <li class="list-group-item text-right">
                     ${index + 1}.  <img src="${coin.item.thumb}"> ${coin.item.name}
                 </li>
             `);
@@ -56,7 +56,7 @@ const getTrending = async (endPoint) => {
     };
 };
 
-// getTrending(trendingEndPoint);
+getTrending(trendingEndPoint);
 
 // API call to get top 100 crypto currencies and render table
 const getCoins = async (endPoint) => {
@@ -84,5 +84,5 @@ const getCoins = async (endPoint) => {
     };
 };
 
-// getCoins(coinsEndPoint);
+getCoins(coinsEndPoint);
 
