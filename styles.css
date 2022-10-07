@@ -27,3 +27,15 @@ span {
 .coin-name {
     font-weight: bold;
 }
+
+/* Table */
+
+.table-responsive {
+    max-height: 400px;
+}
+
+thead {
+    position:sticky;
+    top: 0 ;
+    background: #fff;
+}

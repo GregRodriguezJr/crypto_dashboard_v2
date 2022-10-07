@@ -2,13 +2,13 @@
 const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
-const globalEndPoint = "global"
+const globalEndPoint = "global";
 let chartSelection = "bitcoin";
 
 const renderChart = () => {
     $('#chartContainer').html(`
         <coingecko-coin-compare-chart-widget  coin-ids="${chartSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
-    `)
+    `);
 };
 
 renderChart();
@@ -40,7 +40,7 @@ const getGlobalData = async (endpoint) => {
             <p class="m-0 mx-3">Total Exchanges: <span class="text-primary">${exchanges}</span></p>
             <p class="m-0 mx-3">Market Cap: <span class="text-primary">$${Math.round(marketCap).toLocaleString()}</span></p>
             <p class="m-0 mx-3">BTC Dominance: <span class="text-primary">${Math.round(btcDominance)}%</span></p>
-        `)
+        `);
     } catch (error) {
         console.log(error);
     }
@@ -86,7 +86,7 @@ const getCoins = async (endPoint) => {
                 <td>${coin.market_cap}</td>
                 <td class"details">Details</td>
             </tr>
-            `)
+            `);
         });
     } catch (error) {
         console.log(error);

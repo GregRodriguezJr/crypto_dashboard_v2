@@ -19,26 +19,38 @@
     </header>
 
 	<!-- Main Container -->
-	<div class="container mt-5">
-		<!-- Chart widget container -->
-		<div id="chartContainer"></div>
+	<div class="container">
+		<div class="row my-5">
+			<div class="col-md-8">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Coin</th>
+								<th scope="col">Price</th>
+								<th scope="col">24hr</th>
+								<th scope="col">Mkt Cap</th>
+								<th scope="col">More</th>
+							</tr>
+						</thead>
+						<tbody id="coinTable"></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<!-- Chart widget container -->
+				<div id="chartContainer"></div>
+			</div>
+		</div>
+		<!-- <div class="row"> -->
+			
+		<!-- </div>
 		<div class="row">
 			<div class="col-md-9">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Coin</th>
-							<th scope="col">Price</th>
-							<th scope="col">24hr</th>
-							<th scope="col">Mkt Cap</th>
-							<th scope="col">More</th>
-						</tr>
-					</thead>
-					<tbody id="coinTable"></tbody>
-				</table>
-			</div>
-			<div class="col-md-3">
+				
+			</div> -->
+			<!-- <div class="col-md-3">
 				<div class="card d-inline-flex" style="max-width: 16rem;">
 					<img class="card-img-top" src="./imgs/candles.jpg" alt="Card image cap">
 					<div class="card-body">
@@ -47,8 +59,8 @@
 					</div>
 					<ul class="list-group list-group-flush" id="trending-ul"></ul>
 				</div>
-			</div>
-		</div>
+			</div> -->
+		<!-- </div> -->
 	</div>
 
     <!-- jQuery JS CDN -->
