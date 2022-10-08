@@ -3,15 +3,14 @@ const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 const globalEndPoint = "global";
-let chartSelection = "ravencoin";
+let chartSelection = "bitcoin";
 
-const renderChart = () => {
+// Render chart from Coin Gecko CDN
+const renderChart = (chartSelection) => {
     $('#chartContainer').html(`
         <coingecko-coin-compare-chart-widget  coin-ids="${chartSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
     `);
 };
-
-renderChart();
 
 // API call to Coin Gecko
 const getCoinGecko = async (endPoint) => {
@@ -95,3 +94,15 @@ const getCoins = async (endPoint) => {
 
 getCoins(coinsEndPoint);
 
+// Eventlisteners
+
+// Eventlistner to grab the id of the coin clicked
+$('table').on("click", ".details" , function() {
+    // Assign new id to variable
+    chartSelection = $(this).parent()[0].id;
+    // Call function to update and render chart
+    renderChart(chartSelection);
+});
+
+// Onload function calls
+renderChart(chartSelection);
