@@ -11,13 +11,15 @@ h1 {
     color: #011A51;
 }
 
-span {
+.orange-text {
     color: #FB847C;
 }
 
 #globalData p {
     font-size: .75rem;
 }
+
+/* Table */
 
 .coin-img {
     width: 100%;
@@ -28,8 +30,6 @@ span {
     font-weight: bold;
 }
 
-/* Table */
-
 .table-responsive {
     max-height: 400px;
 }
@@ -38,4 +38,17 @@ thead {
     position:sticky;
     top: 0 ;
     background: #fff;
+}
+
+.details {
+    cursor: pointer;
+}
+
+.details:hover {
+    text-decoration: underline;
+    color: var(--bs-primary);
+}
+
+.details:active {
+    opacity: .7;
 }

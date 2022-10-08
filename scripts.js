@@ -3,7 +3,7 @@ const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 const globalEndPoint = "global";
-let chartSelection = "bitcoin";
+let chartSelection = "ravencoin";
 
 const renderChart = () => {
     $('#chartContainer').html(`
@@ -84,7 +84,7 @@ const getCoins = async (endPoint) => {
                 <td>${coin.current_price}</td>
                 <td>${coin.price_change_percentage_24h}</td>
                 <td>${coin.market_cap}</td>
-                <td class"details">Details</td>
+                <td id="${coin.id}"><span class="details">Details</span></td>
             </tr>
             `);
         });
