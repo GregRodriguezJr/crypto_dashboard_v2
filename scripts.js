@@ -72,9 +72,14 @@ const getCoins = async (endPoint) => {
         const coins = await getCoinGecko(endPoint);
         console.log(coins);
         coins.forEach((coin, index) => {
+            // Destructuring coins data object
             const {
                 name: name, 
-                image: image
+                image: image,
+                current_price: price,
+                price_change_percentage_24h: change24h,
+                market_cap: cap,
+                id: id
             } = coin
             $('#coinTable').append(`
             <tr>
@@ -84,9 +89,9 @@ const getCoins = async (endPoint) => {
                     <p class="coin-name my-0 mx-3">${name}</p>
                 </td>
                 <td>$${price}</td>
-                <td>${coin.price_change_percentage_24h.toFixed(2)}</td>
-                <td>$${coin.market_cap.toLocaleString()}</td>
-                <td id="${coin.id}"><span class="details">Details</span></td>
+                <td>${change24h.toFixed(2)}</td>
+                <td>$${cap.toLocaleString()}</td>
+                <td id="${id}"><span class="details">Details</span></td>
             </tr>
             `);
         });
@@ -95,7 +100,7 @@ const getCoins = async (endPoint) => {
     };
 };
 
-getCoins(coinsEndPoint);
+// getCoins(coinsEndPoint);
 
 // Eventlisteners
 
@@ -108,4 +113,4 @@ $('table').on("click", ".details" , function() {
 });
 
 // Onload function calls
-renderChart(chartSelection);
+// renderChart(chartSelection);
