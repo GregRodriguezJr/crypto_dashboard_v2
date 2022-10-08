@@ -72,17 +72,20 @@ const getCoins = async (endPoint) => {
         const coins = await getCoinGecko(endPoint);
         console.log(coins);
         coins.forEach((coin, index) => {
+            const {
+                name: name, 
+                image: image
+            } = coin
             $('#coinTable').append(`
             <tr>
                 <th scope="row">${index + 1}</th>
                 <td class="d-flex align-items-center">
-                    <img class="coin-img" src="${coin.image}">
-                    <p class="coin-name my-0 mx-3">${coin.name}</p>
-
+                    <img class="coin-img" src="${image}">
+                    <p class="coin-name my-0 mx-3">${name}</p>
                 </td>
-                <td>${coin.current_price}</td>
-                <td>${coin.price_change_percentage_24h}</td>
-                <td>${coin.market_cap}</td>
+                <td>$${price}</td>
+                <td>${coin.price_change_percentage_24h.toFixed(2)}</td>
+                <td>$${coin.market_cap.toLocaleString()}</td>
                 <td id="${coin.id}"><span class="details">Details</span></td>
             </tr>
             `);
