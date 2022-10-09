@@ -90,7 +90,7 @@ const getCoins = async (endPoint) => {
                 <td>${change24h.toFixed(2)}</td>
                 <td>$${cap.toLocaleString()}</td>
                 <td id="${id}">
-                    <button type="button" id="${index}" class="btn btn-link p-0 details" data-bs-toggle="modal" data-bs-target="#modal">Details</button>
+                    <button type="button" id="${index}" class="btn btn-link p-0 details-btn" data-bs-toggle="modal" data-bs-target="#modal">Details</button>
                 </td>
             </tr>
             `);
@@ -124,15 +124,14 @@ const detailsModal = (index) => {
                       
 // Eventlisteners
 
-// Eventlistner to grab the id of the coin clicked
-$('table').on("click", ".details" , function() {
-    // Assign new id to variable
+// Eventlistner to grab the ids of the coin clicked
+$('table').on("click", ".details-btn" , function() {
+    // Assign new id to variable to update chart
     coinSelection = $(this).parent()[0].id;
+    renderChart(coinSelection);
     // Assign index of coin to attach coin selected to modal
     coinIndex = $(this)[0].id;
     detailsModal(coinIndex);
-    // Call function to update and render chart
-    renderChart(coinSelection);
 });
 
 // Onload function calls
@@ -140,3 +139,8 @@ renderChart(coinSelection);
 getGlobalData(globalEndPoint);
 getCoins(coinsEndPoint);
 getTrending(trendingEndPoint);
+
+// todo 
+// make cards for trending coins with title/container
+// possible search feature for coins outside of top 100 api call
+// test for mobile responsiveness
