@@ -100,9 +100,21 @@ const getCoins = async (endPoint) => {
     };
 };
 
+// Assign elements and values to modal body
 const detailsModal = (index) => {
-    console.log(coinsArr[index]);
+    // Destructuring local array of selected coin object
+    const { atl, ath, symbol, total_supply, total_volume, market_cap } = coinsArr[index];
 
+    // Render list of details in modal
+    $('#modalBody').append(`
+        <ul class="list-group">
+            <li class="list-group-item">All time high: $${ath}</li>
+            <li class="list-group-item">All time low: $${atl}</li>
+            <li class="list-group-item">Market Cap: $${market_cap.toLocaleString()}</li>
+            <li class="list-group-item">Total Supply: ${total_supply.toLocaleString()}</li>
+            <li class="list-group-item">Total Volume: ${total_volume.toLocaleString()}</li>
+        </ul>
+    `);
 }
                       
 // Eventlisteners
