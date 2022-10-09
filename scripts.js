@@ -5,12 +5,14 @@ const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_p
 const globalEndPoint = "global";
 let chartSelection = "bitcoin";
 
-// Render chart from Coin Gecko CDN
+// Render chart widget from Coin Gecko CDN
 const renderChart = (chartSelection) => {
     $('#chartContainer').html(`
         <coingecko-coin-compare-chart-widget coin-ids="${chartSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
     `);
 };
+
+// API calls and rendering to the DOM
 
 // API call to Coin Gecko
 const getCoinGecko = async (endPoint) => {
@@ -45,8 +47,6 @@ const getGlobalData = async (endpoint) => {
     }
 }
 
-getGlobalData(globalEndPoint);
-
 // API call to get top 7 trending coins and render card
 const getTrending = async (endPoint) => {
     try {
@@ -63,8 +63,6 @@ const getTrending = async (endPoint) => {
         console.log(error);
     };
 };
-
-getTrending(trendingEndPoint);
 
 // API call to get top 100 crypto currencies and render table
 const getCoins = async (endPoint) => {
@@ -84,10 +82,8 @@ const getCoins = async (endPoint) => {
             $('#coinTable').append(`
             <tr>
                 <th scope="row">${index + 1}</th>
-                <td class="d-flex align-items-center">
-                    <img class="coin-img" src="${image}">
-                    <p class="coin-name my-0 mx-3">${name}</p>
-                </td>
+                <td><img class="coin-img" src="${image}"></td>
+                <td class="coin-name">${name}</td>
                 <td>$${price}</td>
                 <td>${change24h.toFixed(2)}</td>
                 <td>$${cap.toLocaleString()}</td>
@@ -99,8 +95,6 @@ const getCoins = async (endPoint) => {
         console.log(error);
     };
 };
-
-getCoins(coinsEndPoint);
 
 // Eventlisteners
 
@@ -114,3 +108,6 @@ $('table').on("click", ".details" , function() {
 
 // Onload function calls
 renderChart(chartSelection);
+getGlobalData(globalEndPoint);
+getCoins(coinsEndPoint);
+getTrending(trendingEndPoint);
