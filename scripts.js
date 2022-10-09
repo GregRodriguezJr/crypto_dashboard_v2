@@ -87,7 +87,9 @@ const getCoins = async (endPoint) => {
                 <td>$${price}</td>
                 <td>${change24h.toFixed(2)}</td>
                 <td>$${cap.toLocaleString()}</td>
-                <td id="${id}"><span class="details">Details</span></td>
+                <td id="${id}">
+                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#modal">Details</button>
+                </td>
             </tr>
             `);
         });

@@ -40,19 +40,6 @@ thead {
     background: #fff;
 }
 
-.details {
-    cursor: pointer;
-}
-
-.details:hover {
-    text-decoration: underline;
-    color: var(--bs-primary);
-}
-
-.details:active {
-    opacity: .7;
-}
-
 /* Chart */
 
 #chartContainer {
