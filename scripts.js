@@ -104,7 +104,12 @@ const getCoins = async (endPoint) => {
 const detailsModal = (index) => {
     // Destructuring local array of selected coin object
     const { atl, ath, symbol, total_supply, total_volume, market_cap } = coinsArr[index];
-
+    // Clear out previous title
+    $('.modal-title').html('');
+    // Render new title
+    $('.modal-title').html(`${symbol.toUpperCase()}`);
+    // Clear out modal html
+    $('#modalBody').html('')
     // Render list of details in modal
     $('#modalBody').append(`
         <ul class="list-group">
