@@ -3,12 +3,13 @@ const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 const globalEndPoint = "global";
-let chartSelection = "bitcoin";
+let coinSelection = "bitcoin";
+let coinsArr;
 
 // Render chart widget from Coin Gecko CDN
-const renderChart = (chartSelection) => {
+const renderChart = (coinSelection) => {
     $('#chartContainer').html(`
-        <coingecko-coin-compare-chart-widget coin-ids="${chartSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
+        <coingecko-coin-compare-chart-widget coin-ids="${coinSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
     `);
 };
 
@@ -68,7 +69,8 @@ const getTrending = async (endPoint) => {
 const getCoins = async (endPoint) => {
     try {
         const coins = await getCoinGecko(endPoint);
-        console.log(coins);
+        // Store 100 coins in local array for modal
+        coinsArr = coins;
         coins.forEach((coin, index) => {
             // Destructuring coins data object
             const {
@@ -78,7 +80,7 @@ const getCoins = async (endPoint) => {
                 price_change_percentage_24h: change24h,
                 market_cap: cap,
                 id: id
-            } = coin;
+            } = coin;            
             $('#coinTable').append(`
             <tr>
                 <th scope="row">${index + 1}</th>
@@ -88,7 +90,7 @@ const getCoins = async (endPoint) => {
                 <td>${change24h.toFixed(2)}</td>
                 <td>$${cap.toLocaleString()}</td>
                 <td id="${id}">
-                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#modal">Details</button>
+                    <button type="button" id="${index}" class="btn btn-link p-0 details" data-bs-toggle="modal" data-bs-target="#modal">Details</button>
                 </td>
             </tr>
             `);
@@ -98,18 +100,26 @@ const getCoins = async (endPoint) => {
     };
 };
 
+const detailsModal = (index) => {
+    console.log(coinsArr[index]);
+
+}
+                      
 // Eventlisteners
 
 // Eventlistner to grab the id of the coin clicked
 $('table').on("click", ".details" , function() {
     // Assign new id to variable
-    chartSelection = $(this).parent()[0].id;
+    coinSelection = $(this).parent()[0].id;
+    // Assign index of coin to attach coin selected to modal
+    coinIndex = $(this)[0].id;
+    detailsModal(coinIndex);
     // Call function to update and render chart
-    renderChart(chartSelection);
+    renderChart(coinSelection);
 });
 
 // Onload function calls
-renderChart(chartSelection);
+renderChart(coinSelection);
 getGlobalData(globalEndPoint);
 getCoins(coinsEndPoint);
 getTrending(trendingEndPoint);
