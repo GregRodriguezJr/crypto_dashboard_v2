@@ -8,7 +8,7 @@ let chartSelection = "bitcoin";
 // Render chart from Coin Gecko CDN
 const renderChart = (chartSelection) => {
     $('#chartContainer').html(`
-        <coingecko-coin-compare-chart-widget  coin-ids="${chartSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
+        <coingecko-coin-compare-chart-widget coin-ids="${chartSelection}" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
     `);
 };
 
@@ -80,7 +80,7 @@ const getCoins = async (endPoint) => {
                 price_change_percentage_24h: change24h,
                 market_cap: cap,
                 id: id
-            } = coin
+            } = coin;
             $('#coinTable').append(`
             <tr>
                 <th scope="row">${index + 1}</th>
@@ -100,7 +100,7 @@ const getCoins = async (endPoint) => {
     };
 };
 
-// getCoins(coinsEndPoint);
+getCoins(coinsEndPoint);
 
 // Eventlisteners
 
@@ -113,4 +113,4 @@ $('table').on("click", ".details" , function() {
 });
 
 // Onload function calls
-// renderChart(chartSelection);
+renderChart(chartSelection);
