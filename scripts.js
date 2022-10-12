@@ -3,7 +3,9 @@ const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 const globalEndPoint = "global";
+// Default value for chart
 let coinSelection = "bitcoin";
+// Array to store top 100 coins
 let coinsArr;
 
 // Render chart widget from Coin Gecko CDN
@@ -53,11 +55,12 @@ const getTrending = async (endPoint) => {
     try {
         const data = await getCoinGecko(endPoint);
         const coins = data.coins;
-        console.log(coins);
+        // Pass in coin id to render marquee from API
         $('#trendingContainer').html(`
-            <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
+            <coingecko-coin-price-marquee-widget  coin-ids="${coins[0].item.id},${coins[1].item.id},${coins[2].item.id},${coins[3].item.id},${coins[4].item.id},${coins[5].item.id},${coins[6].item.id}" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
         `)
     } catch (error) {
+        $('#trendingContainer').html("Something went wrong with marquee :(");
         console.log(error);
     };
 };
@@ -132,12 +135,11 @@ $('table').on("click", ".details-btn" , function() {
 });
 
 // Onload function calls
-// renderChart(coinSelection);
-// getGlobalData(globalEndPoint);
-// getCoins(coinsEndPoint);
-// getTrending(trendingEndPoint);
+renderChart(coinSelection);
+getGlobalData(globalEndPoint);
+getCoins(coinsEndPoint);
+getTrending(trendingEndPoint);
 
 // todo 
-// make cards for trending coins with title/container
 // possible search feature for coins outside of top 100 api call
 // test for mobile responsiveness
