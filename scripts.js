@@ -53,13 +53,10 @@ const getTrending = async (endPoint) => {
     try {
         const data = await getCoinGecko(endPoint);
         const coins = data.coins;
-        coins.forEach((coin, index) => {
-            $('#trending-ul').append(`
-                <li class="list-group-item text-right">
-                    ${index + 1}.  <img src="${coin.item.thumb}"> ${coin.item.name}
-                </li>
-            `);
-        });
+        console.log(coins);
+        $('#trendingContainer').html(`
+            <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,eos,ripple,litecoin" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
+        `)
     } catch (error) {
         console.log(error);
     };
@@ -135,10 +132,10 @@ $('table').on("click", ".details-btn" , function() {
 });
 
 // Onload function calls
-renderChart(coinSelection);
-getGlobalData(globalEndPoint);
-getCoins(coinsEndPoint);
-getTrending(trendingEndPoint);
+// renderChart(coinSelection);
+// getGlobalData(globalEndPoint);
+// getCoins(coinsEndPoint);
+// getTrending(trendingEndPoint);
 
 // todo 
 // make cards for trending coins with title/container
