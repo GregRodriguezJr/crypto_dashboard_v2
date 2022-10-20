@@ -135,10 +135,10 @@ $('table').on("click", ".details-btn" , function() {
 });
 
 // Onload function calls
-renderChart(coinSelection);
-getGlobalData(globalEndPoint);
-getCoins(coinsEndPoint);
-getTrending(trendingEndPoint);
+// renderChart(coinSelection);
+// getGlobalData(globalEndPoint);
+// getCoins(coinsEndPoint);
+// getTrending(trendingEndPoint);
 
 // todo 
 // possible search feature for coins outside of top 100 api call
