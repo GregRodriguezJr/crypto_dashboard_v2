@@ -52,13 +52,30 @@
 		</div>
 
 		<!-- Search Container -->
-		<div class="container">
-			<p>Don't see your coin listed? <br>Search to display info card.</p>
-			<div class="row">
-				<div class="col-md-3">
+		<div class="container my-5">
+			<!-- Row -->
+			<div class="row d-flex align-items-center">
+				<!-- Column -->
+				<div class="col-md-6 col-lg-4">
+					<p class="text-center">Don't see your coin listed? <br>Search here to display info card.</p>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Enter Coin Name/Ticker" aria-label="Recipient's username" aria-describedby="button-addon2">
 						<button class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
+					</div>
+					<p class="text-danger" hidden>Invalid name, please try again.</p>
+				</div>
+				<!-- Column -->
+				<div class="col-md-6 col-lg-4 d-flex justify-content-center">
+					<!-- Card -->
+					<div class="card my-5" style="max-width: 18rem;">
+						<div class="card-header">
+						  Featured
+						</div>
+						<ul class="list-group list-group-flush">
+						  <li class="list-group-item">An item</li>
+						  <li class="list-group-item">A second item</li>
+						  <li class="list-group-item">A third item</li>
+						</ul>
 					</div>
 				</div>
 			</div>
