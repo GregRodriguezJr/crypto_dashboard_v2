@@ -128,6 +128,7 @@ const getSearchedCoin = async (searchValue) => {
     let searchEndPoint = `coins/markets?vs_currency=usd&ids=${searchValue.toLowerCase()}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
     try {
         const coin = await getCoinGecko(searchEndPoint);
+        // Conditional to check if search value is a valid coin
         if (coin[0] == null) {
             $('#search-error').addClass('show');
         } else {
@@ -155,7 +156,11 @@ $('table').on("click", ".details-btn" , function() {
 $('#search-btn').click(function() {
     const searchValue = $('#searchInput').val();
     getSearchedCoin(searchValue);
-  });
+    // Clear input box after function is called
+    $(document).ready(function() {
+        $('#searchInput').val('');
+    });
+});
 
 // Onload function calls
 // renderChart(coinSelection);
@@ -164,5 +169,4 @@ $('#search-btn').click(function() {
 // getTrending(trendingEndPoint);
 
 // todo 
-// possible search feature for coins outside of top 100 api call
 // test for mobile responsiveness
