@@ -124,6 +124,7 @@ const detailsModal = (index) => {
 
 // API call to get searched coin and render card
 const getSearchedCoin = async (searchValue) => {
+    // Local endpoint variable with search value for query get request
     let searchEndPoint = `coins/markets?vs_currency=usd&ids=${searchValue.toLowerCase()}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
     try {
         console.log(searchValue);
@@ -149,6 +150,7 @@ $('table').on("click", ".details-btn" , function() {
 // Eventlistener to grab text input from search box
 $('#search-btn').click(function() {
     const searchValue = $('#searchInput').val();
+    getSearchedCoin(searchValue);
   });
 
 // Onload function calls
