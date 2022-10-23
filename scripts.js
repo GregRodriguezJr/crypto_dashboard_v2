@@ -127,9 +127,13 @@ const getSearchedCoin = async (searchValue) => {
     // Local endpoint variable with search value for query get request
     let searchEndPoint = `coins/markets?vs_currency=usd&ids=${searchValue.toLowerCase()}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
     try {
-        console.log(searchValue);
         const coin = await getCoinGecko(searchEndPoint);
-        console.log(coin); 
+        if (coin[0] == null) {
+            $('#search-error').addClass('show');
+        } else {
+            $('#search-error').removeClass('show');
+            console.log(coin); 
+        }
     } catch (error) {
         console.log(error);
     }
