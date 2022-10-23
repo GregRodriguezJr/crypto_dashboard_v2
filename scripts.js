@@ -121,6 +121,18 @@ const detailsModal = (index) => {
         </ul>
     `);
 }
+
+// API call to get searched coin and render card
+const getSearchedCoin = async (searchValue) => {
+    let searchEndPoint = `coins/markets?vs_currency=usd&ids=${searchValue.toLowerCase()}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
+    try {
+        console.log(searchValue);
+        const coin = await getCoinGecko(searchEndPoint);
+        console.log(coin); 
+    } catch (error) {
+        console.log(error);
+    }
+}
                       
 // Eventlisteners
 
