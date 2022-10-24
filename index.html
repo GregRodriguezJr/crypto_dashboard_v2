@@ -54,7 +54,7 @@
 		<!-- Search Container -->
 		<div class="container my-5">
 			<!-- Row -->
-			<div class="row d-flex align-items-center">
+			<div class="row d-flex align-items-baseline">
 				<!-- Column -->
 				<div class="col-md-6 col-lg-4">
 					<p class="text-center">Don't see your coin listed? <br>Search here to display info card.</p>
@@ -62,21 +62,12 @@
 						<input id="searchInput" type="text" class="form-control" placeholder="Enter Coin Name" aria-label="search input box" aria-describedby="search-btn">
 						<button class="btn btn-outline-primary" type="button" id="search-btn">Search</button>
 					</div>
-					<p id="search-error" class="text-danger hidden">Invalid name, please try again.</p>
+					<p id="search-error" class="text-danger hidden">Invalid coin name, please try again.</p>
 				</div>
 				<!-- Column -->
 				<div class="col-md-6 col-lg-4 d-flex justify-content-center">
-					<!-- Card -->
-					<div id="searchResults" class="card my-5" style="max-width: 18rem;">
-						<!-- <div class="card-header">
-						  Featured
-						</div>
-						<ul class="list-group list-group-flush">
-						  <li class="list-group-item">An item</li>
-						  <li class="list-group-item">A second item</li>
-						  <li class="list-group-item">A third item</li>
-						</ul> -->
-					</div>
+					<!-- Search Results Card -->
+					<div id="searchResults" class="card my-5" style="max-width: 18rem;"></div>
 				</div>
 			</div>
 		</div>

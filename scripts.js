@@ -122,25 +122,24 @@ const detailsModal = (index) => {
     `);
 }
 
+// Dynamically created a bootstrap card
 const renderCard = (coin, index, elementID) => {
-    console.log(elementID);
-    console.log(coin);
+    // Clear out previous card
+    elementID.html('');
+    // Destructing object from local array
     const { atl, ath, symbol, total_supply, total_volume, market_cap, image } = coin[index];
+    // Append to html element Id to the DOM
     elementID.append(`
     <div class="card-header d-flex align-items-center">
-        <div>
-            <img class="coin-img" src=${image}>
-        </div>
-        <div class="mx-1">
-            ${symbol.toUpperCase()}
-        </div>
+        <img class="coin-img" src=${image}>
+        <p class="my-0 mx-2"><strong>${symbol.toUpperCase()}</strong></p>
 	</div>
     <ul class="list-group">
-        <li class="list-group-item">All time high: $${ath}</li>
-        <li class="list-group-item">All time low: $${atl}</li>
-        <li class="list-group-item">Market Cap: $${market_cap.toLocaleString()}</li>
-        <li class="list-group-item">Total Supply: ${total_supply.toLocaleString()}</li>
-        <li class="list-group-item">Total Volume: ${total_volume.toLocaleString()}</li>
+        <li class="list-group-item border-0 border-bottom">All time high: $${ath}</li>
+        <li class="list-group-item border-0 border-bottom bg-light">All time low: $${atl}</li>
+        <li class="list-group-item border-0 border-bottom">Market Cap: $${market_cap.toLocaleString()}</li>
+        <li class="list-group-item border-0 border-bottom bg-light">Total Supply: ${total_supply.toLocaleString()}</li>
+        <li class="list-group-item border-0">Total Volume: ${total_volume.toLocaleString()}</li>
     </ul>
 `);
 }
