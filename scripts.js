@@ -122,10 +122,37 @@ const detailsModal = (index) => {
     `);
 }
 
+const renderCard = (coin, index, elementID) => {
+    console.log(elementID);
+    console.log(coin);
+    const { atl, ath, symbol, total_supply, total_volume, market_cap, image } = coin[index];
+    elementID.append(`
+    <div class="card-header d-flex align-items-center">
+        <div>
+            <img class="coin-img" src=${image}>
+        </div>
+        <div class="mx-1">
+            ${symbol.toUpperCase()}
+        </div>
+	</div>
+    <ul class="list-group">
+        <li class="list-group-item">All time high: $${ath}</li>
+        <li class="list-group-item">All time low: $${atl}</li>
+        <li class="list-group-item">Market Cap: $${market_cap.toLocaleString()}</li>
+        <li class="list-group-item">Total Supply: ${total_supply.toLocaleString()}</li>
+        <li class="list-group-item">Total Volume: ${total_volume.toLocaleString()}</li>
+    </ul>
+`);
+}
+
 // API call to get searched coin and render card
 const getSearchedCoin = async (searchValue) => {
     // Local endpoint variable with search value for query get request
-    let searchEndPoint = `coins/markets?vs_currency=usd&ids=${searchValue.toLowerCase()}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`
+    const searchEndPoint = `coins/markets?vs_currency=usd&ids=${searchValue.toLowerCase()}&order=market_cap_desc&page=1&sparkline=false&price_change_percentage=24h`;
+    // Html element to target the DOM
+    const elementID = $('#searchResults');
+    // Coin search is exact, only one possible result of index 0
+    const index = 0;
     try {
         const coin = await getCoinGecko(searchEndPoint);
         // Conditional to check if search value is a valid coin
@@ -133,7 +160,7 @@ const getSearchedCoin = async (searchValue) => {
             $('#search-error').addClass('show');
         } else {
             $('#search-error').removeClass('show');
-            console.log(coin); 
+            renderCard(coin, index, elementID); 
         }
     } catch (error) {
         console.log(error);
