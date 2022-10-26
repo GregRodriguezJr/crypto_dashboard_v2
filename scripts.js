@@ -157,9 +157,11 @@ const getSearchedCoin = async (searchValue) => {
         const coin = await getCoinGecko(searchEndPoint);
         // Conditional to check if search value is a valid coin
         if (coin[0] == null) {
-            $('#search-error').addClass('show');
+            $('#search-error', ).addClass('show');
+            $('#coinList').addClass('show');
         } else {
             $('#search-error').removeClass('show');
+            $('coinList').removeClass('show');
             renderCard(coin, index, elementID); 
         }
     } catch (error) {
@@ -205,6 +207,3 @@ $('#search-btn').click(function() {
 // getCoins(coinsEndPoint);
 // getTrending(trendingEndPoint);
 // getCoinList(listEndPoint);
-
-// todo 
-// test for mobile responsiveness
