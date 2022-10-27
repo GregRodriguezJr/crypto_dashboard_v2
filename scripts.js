@@ -8,6 +8,10 @@ const listEndPoint = 'coins/list?include_platform=false';
 let coinSelection = "bitcoin";
 // Array to store top 100 coins
 let coinsArr;
+// Array to store all 10k coins
+let allCoinsArr;
+
+const searchInputEl = document.getElementById('searchInput');
 
 // Render chart widget from Coin Gecko CDN
 const renderChart = (coinSelection) => {
@@ -169,14 +173,24 @@ const getSearchedCoin = async (searchValue) => {
     }
 }
 
-// API call to get coin list by name
+// API call to get full coin list
 const getCoinList = async (endPoint) => {
     try {
-        const coinArr = await getCoinGecko(endPoint);
-        console.log(coinArr);
+        allCoinsArr = await getCoinGecko(endPoint);
     } catch (error) {
         console.log(error);
     }
+}
+
+// Update coinlist with user from search input
+const updateCoinList = () => {
+    let filteredCoins = [];
+    allCoinsArr.forEach(coin => {
+        if(coin.name.toLowerCase().includes(searchInputEl.value)) {
+            filteredCoins.push(coin)
+        }
+    })
+    console.log(filteredCoins);
 }
                       
 // Eventlisteners
@@ -201,9 +215,12 @@ $('#search-btn').click(function() {
     });
 });
 
+// Eventlistener to update coinlist with keyboard input
+searchInputEl.addEventListener('input', updateCoinList);
+
 // Onload function calls
-// renderChart(coinSelection);
-// getGlobalData(globalEndPoint);
-// getCoins(coinsEndPoint);
-// getTrending(trendingEndPoint);
-// getCoinList(listEndPoint);
+renderChart(coinSelection);
+getGlobalData(globalEndPoint);
+getCoins(coinsEndPoint);
+getTrending(trendingEndPoint);
+getCoinList(listEndPoint);
