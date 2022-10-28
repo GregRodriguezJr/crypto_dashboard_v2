@@ -56,7 +56,7 @@
 			<!-- Row -->
 			<div class="row d-flex align-items-baseline">
 				<!-- Column -->
-				<div class="col-md-6 col-lg-4">
+				<div class="col-md-3">
 					<p class="text-center">Don't see your coin listed? <br>Search here to display info card.</p>
 					<div class="input-group">
 						<input id="searchInput" type="text" class="form-control" placeholder="bitcoin" aria-label="search input box" aria-describedby="search-btn">
@@ -67,9 +67,14 @@
 					</p>
 				</div>
 				<!-- Column -->
-				<div class="col-md-6 col-lg-4 d-flex justify-content-center">
+				<div class="col-md-3 d-flex justify-content-center">
 					<!-- Search Results Card -->
 					<div id="searchResults" class="card my-5" style="max-width: 18rem;"></div>
+				</div>
+				<!-- Column -->
+				<div class="col-md-6 p-2">
+					<h5 class="text-center">Suggestions</h5>
+					<div id="suggestionBox" class="d-flex flex-wrap overflow-auto" style="max-height: 400px"></div>
 				</div>
 			</div>
 		</div>

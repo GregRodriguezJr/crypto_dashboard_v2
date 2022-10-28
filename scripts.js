@@ -190,7 +190,7 @@ const updateCoinList = () => {
             filteredCoins.push(coin)
         }
     })
-    console.log(filteredCoins);
+   renderSuggestedCoins(filteredCoins);
 }
                       
 // Eventlisteners
