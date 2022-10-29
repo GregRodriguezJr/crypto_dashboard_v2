@@ -1,3 +1,6 @@
+// JS module
+import { fullCoinList } from "./data.js";
+
 // URL Variables and API endpoints
 const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
@@ -178,7 +181,10 @@ const getSearchedCoin = async (searchValue) => {
 //     try {
 //         allCoinsArr = await getCoinGecko(endPoint);
 //         allCoinsArr.forEach(coin => {
-//             console.log(`"${coin.name}",`);
+//             $('#suggestionBox').append(`
+//                 <li>"${coin.name}",</li>
+//             `  
+//             );
 //         })
 //     } catch (error) {
 //         console.log(error);
@@ -186,31 +192,31 @@ const getSearchedCoin = async (searchValue) => {
 // }
 
 // Display suggested coins to DOM
-// const renderSuggestedCoins = (filteredCoins) => {
-//     $('#suggestionBox').html('');
-//     filteredCoins.forEach(coin => {
-//         $('#suggestionBox').append(`
-//             <p class="mx-2">${coin.name} - </p>
-//         `
-//         );
-//     });
-//     if(coin[index] % 2 === 0) {
-//         $('#suggestionBox').children().addClass('orange-text');
-//     } else {
-//         $('#suggestionBox').children().addClass('blue-text');
-//     };
-// }
+const renderSuggestedCoins = (filteredCoins) => {
+    $('#suggestionBox').html('');
+    filteredCoins.forEach(coin => {
+        $('#suggestionBox').append(`
+            <p class="mx-2">${coin.name} - </p>
+        `
+        );
+    });
+    if(coin[index] % 2 === 0) {
+        $('#suggestionBox').children().addClass('orange-text');
+    } else {
+        $('#suggestionBox').children().addClass('blue-text');
+    };
+}
 
 // Update coinlist with user from search input
-// const updateCoinList = () => {
-//     let filteredCoins = [];
-//     allCoinsArr.forEach(coin => {
-//         if(coin.name.toLowerCase().includes(searchInputEl.value)) {
-//             filteredCoins.push(coin)
-//         };
-//     });
-//    renderSuggestedCoins(filteredCoins);
-// }
+const updateCoinList = () => {
+    let filteredCoins = [];
+    allCoinsArr.forEach(coin => {
+        if(coin.name.toLowerCase().includes(searchInputEl.value)) {
+            filteredCoins.push(coin)
+        };
+    });
+   renderSuggestedCoins(filteredCoins);
+}
                       
 // Eventlisteners
 
@@ -235,11 +241,11 @@ $('#search-btn').click(function() {
 });
 
 // Eventlistener to update coinlist with keyboard input
-// searchInputEl.addEventListener('input', updateCoinList);
+searchInputEl.addEventListener('input', updateCoinList);
 
 // Onload function calls
 renderChart(coinSelection);
 getGlobalData(globalEndPoint);
 getCoins(coinsEndPoint);
 getTrending(trendingEndPoint);
-getCoinList(listEndPoint);
+// getCoinList(listEndPoint);
