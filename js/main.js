@@ -173,25 +173,44 @@ const getSearchedCoin = async (searchValue) => {
     }
 }
 
-// API call to get full coin list
-const getCoinList = async (endPoint) => {
-    try {
-        allCoinsArr = await getCoinGecko(endPoint);
-    } catch (error) {
-        console.log(error);
-    }
-}
+// API call to get full coin list, ran once to store coins in local array due to API limits. (Free tier)
+// const getCoinList = async (endPoint) => {
+//     try {
+//         allCoinsArr = await getCoinGecko(endPoint);
+//         allCoinsArr.forEach(coin => {
+//             console.log(`"${coin.name}",`);
+//         })
+//     } catch (error) {
+//         console.log(error);
+//     };
+// }
+
+// Display suggested coins to DOM
+// const renderSuggestedCoins = (filteredCoins) => {
+//     $('#suggestionBox').html('');
+//     filteredCoins.forEach(coin => {
+//         $('#suggestionBox').append(`
+//             <p class="mx-2">${coin.name} - </p>
+//         `
+//         );
+//     });
+//     if(coin[index] % 2 === 0) {
+//         $('#suggestionBox').children().addClass('orange-text');
+//     } else {
+//         $('#suggestionBox').children().addClass('blue-text');
+//     };
+// }
 
 // Update coinlist with user from search input
-const updateCoinList = () => {
-    let filteredCoins = [];
-    allCoinsArr.forEach(coin => {
-        if(coin.name.toLowerCase().includes(searchInputEl.value)) {
-            filteredCoins.push(coin)
-        }
-    })
-   renderSuggestedCoins(filteredCoins);
-}
+// const updateCoinList = () => {
+//     let filteredCoins = [];
+//     allCoinsArr.forEach(coin => {
+//         if(coin.name.toLowerCase().includes(searchInputEl.value)) {
+//             filteredCoins.push(coin)
+//         };
+//     });
+//    renderSuggestedCoins(filteredCoins);
+// }
                       
 // Eventlisteners
 
@@ -216,7 +235,7 @@ $('#search-btn').click(function() {
 });
 
 // Eventlistener to update coinlist with keyboard input
-searchInputEl.addEventListener('input', updateCoinList);
+// searchInputEl.addEventListener('input', updateCoinList);
 
 // Onload function calls
 renderChart(coinSelection);
