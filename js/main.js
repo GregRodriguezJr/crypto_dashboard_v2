@@ -6,7 +6,6 @@ const baseUrl = 'https://api.coingecko.com/api/v3/';
 const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 const globalEndPoint = "global";
-const listEndPoint = 'coins/list?include_platform=false';
 
 // Default value for chart
 let coinSelection = "bitcoin";
@@ -175,21 +174,6 @@ const getSearchedCoin = async (searchValue) => {
     }
 }
 
-// API call to get full coin list, ran once to store coins in local array due to API limits. (Free tier)
-// const getCoinList = async (endPoint) => {
-//     try {
-//         allCoinsArr = await getCoinGecko(endPoint);
-//         allCoinsArr.forEach(coin => {
-//             $('#suggestionBox').append(`
-//                 <li>"${coin.name}",</li>
-//             `  
-//             );
-//         })
-//     } catch (error) {
-//         console.log(error);
-//     };
-// }
-
 // Display suggested coins to DOM
 const renderSuggestedCoins = (filteredCoins) => {
     $('#suggestionBox').html('');
@@ -237,8 +221,7 @@ $('#search-btn').click(function() {
 searchInputEl.addEventListener('input', updateCoinList);
 
 // Onload function calls
-// renderChart(coinSelection);
-// getGlobalData(globalEndPoint);
-// getCoins(coinsEndPoint);
-// getTrending(trendingEndPoint);
-// getCoinList(listEndPoint);
+renderChart(coinSelection);
+getGlobalData(globalEndPoint);
+getCoins(coinsEndPoint);
+getTrending(trendingEndPoint);
