@@ -1,4 +1,4 @@
-// JS module
+// JS module with array to store all 10k+ coins
 import { fullCoinList } from "./data.js";
 
 // URL Variables and API endpoints
@@ -7,13 +7,12 @@ const trendingEndPoint = 'search/trending';
 const coinsEndPoint = 'coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h';
 const globalEndPoint = "global";
 const listEndPoint = 'coins/list?include_platform=false';
+
 // Default value for chart
 let coinSelection = "bitcoin";
 // Array to store top 100 coins
 let coinsArr;
-// Array to store all 10k coins
-let allCoinsArr;
-
+// Search input element for suggestion box
 const searchInputEl = document.getElementById('searchInput');
 
 // Render chart widget from Coin Gecko CDN
@@ -194,25 +193,19 @@ const getSearchedCoin = async (searchValue) => {
 // Display suggested coins to DOM
 const renderSuggestedCoins = (filteredCoins) => {
     $('#suggestionBox').html('');
-    filteredCoins.forEach(coin => {
-        $('#suggestionBox').append(`
-            <p class="mx-2">${coin.name} - </p>
-        `
+    filteredCoins.forEach((coin) => {
+        $('#suggestionBox').append(
+            `<p class="mx-2 blue-text">( ${coin} )</p>`
         );
     });
-    if(coin[index] % 2 === 0) {
-        $('#suggestionBox').children().addClass('orange-text');
-    } else {
-        $('#suggestionBox').children().addClass('blue-text');
-    };
 }
 
 // Update coinlist with user from search input
 const updateCoinList = () => {
     let filteredCoins = [];
-    allCoinsArr.forEach(coin => {
-        if(coin.name.toLowerCase().includes(searchInputEl.value)) {
-            filteredCoins.push(coin)
+    fullCoinList.forEach(coin => {
+        if(coin.toLowerCase().includes(searchInputEl.value)) {
+            filteredCoins.push(coin);
         };
     });
    renderSuggestedCoins(filteredCoins);
@@ -244,8 +237,8 @@ $('#search-btn').click(function() {
 searchInputEl.addEventListener('input', updateCoinList);
 
 // Onload function calls
-renderChart(coinSelection);
-getGlobalData(globalEndPoint);
-getCoins(coinsEndPoint);
-getTrending(trendingEndPoint);
+// renderChart(coinSelection);
+// getGlobalData(globalEndPoint);
+// getCoins(coinsEndPoint);
+// getTrending(trendingEndPoint);
 // getCoinList(listEndPoint);
