@@ -203,7 +203,7 @@ $('table').on("click", ".details-btn" , function() {
     coinSelection = $(this).parent()[0].id;
     renderChart(coinSelection);
     // Assign index of coin to attach coin selected to modal
-    coinIndex = $(this)[0].id;
+    let coinIndex = $(this)[0].id;
     detailsModal(coinIndex);
 });
 
