@@ -163,10 +163,8 @@ const getSearchedCoin = async (searchValue) => {
         // Conditional to check if search value is a valid coin
         if (coin[0] == null) {
             $('#search-error', ).addClass('show');
-            $('#coinList').addClass('show');
         } else {
             $('#search-error').removeClass('show');
-            $('coinList').removeClass('show');
             renderCard(coin, index, elementID); 
         }
     } catch (error) {
