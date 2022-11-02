@@ -136,18 +136,18 @@ const renderCard = (coin, index, elementID) => {
     const { atl, ath, symbol, total_supply, total_volume, market_cap, image } = coin[index];
     // Append to html element Id to the DOM
     elementID.append(`
-    <div class="card-header d-flex align-items-center">
-        <img class="coin-img" src=${image}>
-        <p class="my-0 mx-2"><strong>${symbol.toUpperCase()}</strong></p>
-	</div>
-    <ul class="list-group">
-        <li class="list-group-item border-0 border-bottom">All time high: $${ath}</li>
-        <li class="list-group-item border-0 border-bottom bg-light">All time low: $${atl}</li>
-        <li class="list-group-item border-0 border-bottom">Market Cap: $${market_cap.toLocaleString()}</li>
-        <li class="list-group-item border-0 border-bottom bg-light">Total Supply: ${total_supply.toLocaleString()}</li>
-        <li class="list-group-item border-0">Total Volume: ${total_volume.toLocaleString()}</li>
-    </ul>
-`);
+        <div class="card-header d-flex align-items-center">
+            <img class="coin-img" src=${image}>
+            <p class="my-0 mx-2"><strong>${symbol.toUpperCase()}</strong></p>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item border-0 border-bottom">All time high: $${ath}</li>
+            <li class="list-group-item border-0 border-bottom bg-light">All time low: $${atl}</li>
+            <li class="list-group-item border-0 border-bottom">Market Cap: $${market_cap.toLocaleString()}</li>
+            <li class="list-group-item border-0 border-bottom bg-light">Total Supply: ${total_supply.toLocaleString()}</li>
+            <li class="list-group-item border-0">Total Volume: ${total_volume.toLocaleString()}</li>
+        </ul>
+    `);
 }
 
 // API call to get searched coin and render card
@@ -165,7 +165,10 @@ const getSearchedCoin = async (searchValue) => {
             $('#search-error', ).addClass('show');
         } else {
             $('#search-error').removeClass('show');
+            // Display card to DOM
             renderCard(coin, index, elementID); 
+            // Update chart with coin from search input
+            renderChart(coin[0].id);
         }
     } catch (error) {
         console.log(error);
