@@ -222,7 +222,7 @@ $('#search-btn').click(function() {
 searchInputEl.addEventListener('input', updateCoinList);
 
 // Onload function calls
-// renderChart(coinSelection);
-// getGlobalData(globalEndPoint);
-// getCoins(coinsEndPoint);
-// getTrending(trendingEndPoint);
+renderChart(coinSelection);
+getGlobalData(globalEndPoint);
+getCoins(coinsEndPoint);
+getTrending(trendingEndPoint);
