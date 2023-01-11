@@ -10,4 +10,7 @@
 - JavaScript
 - jQuery 
 - Bootstrap 
-- CoinGecko API
+- CoinGecko API   
+
+### Demo
+![animation demo](cryptoDemo.gif)
